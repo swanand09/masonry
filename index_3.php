@@ -140,13 +140,22 @@ body { font-family: sans-serif; }
             //  load() functions
                 var loadUrl = "index.php";
                 $("#cont1").click(function(){
-                   // $("#cont1").html(ajax_load).load(loadUrl);
-                  var response =  $.ajax({ type: "GET",   
-                                    url: loadUrl,   
-                                    async: false
-                                  }).responseText;
-                           alert(response);
-                   $("#cont1").html(ajax_load).load(response);
+                    $("#cont1").html(ajax_load);
+                     $.get(
+                        loadUrl,
+                        function(responseText){
+                            //$("#cont1").html(responseText);
+                            alert($(responseText).find("meta[name='description']").attr("content"));
+                         //  alert($(responseText).find("meta").attr("name"));
+//                          var tes = $.parseHTML(responseText);
+//                            $.each( tes, function( i, el ) {                              
+//                                    alert(el.nodeName);                                
+//                            });
+                        },
+                        "html"
+                    );
+               //  $("#cont1").html(ajax_load).load(loadUrl.attr);
+              
                 });
                 
             });
